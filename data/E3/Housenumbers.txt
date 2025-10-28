@@ -1,5 +1,0 @@
-﻿FID;addr_house;addr_street;addr_city;addr_county;name
-0;27;Barer Straße;München;Bavaria;Alte Pinakothek
-1;3;Königsplatz;München;Bavaria;Glyptothek
-2;31;Luisenstraße;München;Bavaria;Propyläen
-3;12;Arcisstraße;München;Bavaria;Hochschule für Musik und Theater München

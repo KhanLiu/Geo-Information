@@ -1,36 +1,33 @@
 title: Geo-Information
-author: Yushuo Feng
+author: Chair of Cartography and Visual Analytics
 execute:
   execute_notebooks: "off"
 html:
-  baseurl: /Geo-Information/   # 项目站点建议设置，防止静态资源 404
-  favicon: images/TUM.ico
+  baseurl: /Geo-Information/
+  favicon: images/TUM.png
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
-  collapse_navigation: false  # Keep TOC expanded
-  show_navbar_depth: 3        # Show up to 3 levels in navbar
-  expand_subsections: true    # Expand all subsections by default
-  show_toc_level: 3           # Show up to 3 levels in right sidebar TOC
-  use_multitoc_numbering: true # Enable numbering across chapters
+  collapse_navigation: false
+  show_navbar_depth: 3
+  expand_subsections: true
+  show_toc_level: 3
+  use_multitoc_numbering: true
 
-# Enable global table of contents in right sidebar
 sphinx:
   config:
+    copyright: "2025"
+    myst_links_external_new_tab: true
     html_show_sourcelink: false
     html_sidebars:
       "**": ["navbar-logo.html", "search-field.html", "sbt-sidebar-nav.html"]
     html_theme_options:
-      show_toc_level: 3
-      navigation_depth: 3
-      globaltoc_depth: 3
-      globaltoc_collapse: false
-      globaltoc_includehidden: true
-    html_extra_path: ['src'] 
+      navigation_depth: 4
+      collapse_navigation: false
+      expand_subsections: true
+      footer_items: ["copyright", "powered-by"]
 
 repository:
-  url: https://github.com/FullToker/Geo-Information
+  url: https://github.com/KhanLiu/Geo-Information
   path_to_book: ""
   branch: main
-
-include_patterns: ["src/**", "*.pdf"]

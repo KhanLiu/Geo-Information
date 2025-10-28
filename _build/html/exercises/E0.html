@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E0: Getting Started &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/E0';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/E0.html" />
+    <link rel="icon" href="../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 0" href="lessons/E0.html" />
+    <link rel="prev" title="L12: Open Geospatial Data II" href="../lectures/L12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">E0: Getting Started</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E1.html">E1: Selecting and Editing Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E2.html">E2: Symbolization in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/exercises/E0.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E0: Getting Started</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-structure">Exercise Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-manual">User Manual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-platform-arcgis-pro">Exercise Platform: ArcGIS Pro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-platforms-for-gis-tasks">Common Platforms for GIS Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-links">Reference Links</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e0-getting-started">
+<h1>E0: Getting Started<a class="headerlink" href="#e0-getting-started" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Welcome to the Exercises for this module. We recognize that our students come from very diverse backgrounds, so these Exercises are designed using the principle of <strong>differentiated instruction</strong>. Our goal is to provide a suitable challenge for everyone, regardless of their starting point.</p>
+<section id="exercise-structure">
+<h3>Exercise Structure<a class="headerlink" href="#exercise-structure" title="Link to this heading">#</a></h3>
+<p>Each exercise consists of two main pages:</p>
+<ol class="arabic simple">
+<li><p>The <strong>Exercise Overview</strong> page (like this one)</p>
+<ul class="simple">
+<li><p><strong>Introducton</strong>: An overview of the topic and the necessary background knowledge.</p></li>
+<li><p><strong>Data</strong>: The dataset for the exercise (if applicable).</p></li>
+<li><p><strong>Basic Tasks</strong>: The core requirements for all students.</p></li>
+<li><p><strong>Advanced Tasks</strong>: Recommended extra tasks.</p></li>
+<li><p><strong>Assignment Submission</strong>: The requirements for your assignment submission (if applicable).</p></li>
+<li><p><strong>Further Reading</strong>: Further discussions on the topic and additional resources.</p></li>
+</ul>
+</li>
+<li><p>The <strong>Lesson</strong> page (e.g., <a class="reference internal" href="lessons/E0.html"><span class="std std-doc">Lesson 0</span></a>)
+It provides a complete, step-by-step guide for completing the <strong>Basic Tasks</strong>.</p></li>
+</ol>
+</section>
+<section id="user-manual">
+<h3>User Manual<a class="headerlink" href="#user-manual" title="Link to this heading">#</a></h3>
+<p>For students with different skill levels in ArcGIS Pro, we recommend the following study strategies.</p>
+<p>After reading the Exercise Overview page, check your familiarity with each Basic Task:</p>
+<ul class="simple">
+<li><p><strong>If you are new to these tasks:</strong>
+Follow the Lesson page instructions carefully. The Advanced Tasks can be skipped if you find them too challenging. Your main goal is to understand the fundamental workflow.</p></li>
+<li><p><strong>If you have an idea of the workflow but cannot reproduce it:</strong>
+Use the Lesson page instructions to pinpoint and strengthen your weak areas. Once you can complete the Basic Tasks confidently, you should then proceed to the Advanced Tasks. This is common if you:</p>
+<ul>
+<li><p><strong>Need to refresh your memory</strong>: Use the Lesson page to recall specific steps or tools.</p></li>
+<li><p><strong>Are switching from ArcGIS Desktop (ArcMap)</strong>: Focus on learning the new ribbon interface and updated workflows.</p></li>
+<li><p><strong>Are coming from QGIS or other GIS software</strong>: Use the Lesson page to learn ArcGIS Pro’s specific tools and terminology.</p></li>
+<li><p><strong>Are new to the English interface</strong>: Following the steps will help you become familiar with the terms.</p></li>
+<li><p><strong>Are self-taught</strong>: Use this as an opportunity to align your methods with a standard workflow.</p></li>
+</ul>
+</li>
+<li><p><strong>If you can reproduce the workflow without checking the Lesson page:</strong>
+Challenge yourself. After confirming you can complete the Basic Tasks, move on to the Advanced Tasks. For an additional challenge, try to achieve the same results for the Basic Tasks using QGIS.</p></li>
+</ul>
+</section>
+<section id="exercise-platform-arcgis-pro">
+<h3>Exercise Platform: ArcGIS Pro<a class="headerlink" href="#exercise-platform-arcgis-pro" title="Link to this heading">#</a></h3>
+<p>In most Exercises, we will work with ArcGIS Pro, which is the dominant commercial Geographic Information System (GIS) software in the world. You are provided with the campus license by TUM. Considering its standardized workflow and stable performance, it is selected as the software for the Exercises. <strong>You are required to complete the Exercises using ArcGIS Pro.</strong></p>
+<p>Of course, we firmly embrace Open Science and Open Source Software. <a class="reference external" href="https://qgis.org/" rel="noreferer noopener" target="_blank">QGIS</a> is a powerful, free alternative that has a large and active global community. If you already have sufficient experience with ArcGIS Pro, you are encouraged to complete the Exercises with QGIS. (Please consult with the instructor before you do so.) We will also discuss <strong>QGIS and Open Source GIS</strong> in <a class="reference internal" href="E10.html"><span class="std std-doc">E10</span></a>.</p>
+<p>Read more about <a class="reference internal" href="#common-platforms-for-gis-tasks"><span class="xref myst">Common Platform for GIS Tasks</span></a>.</p>
+</section>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/6501d4d22c393c26e57b67f9e9942ed2/Data%20Students.gdb.zip"><code class="xref download docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code></a></p></li>
+</ul>
+</section>
+<section id="basic-tasks">
+<h2>Basic Tasks<a class="headerlink" href="#basic-tasks" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Getting Familiar with the <a class="reference internal" href="#exercise-structure"><span class="xref myst">Exercise Structure</span></a></strong> (0.1)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Setting up ArcGIS Pro on a TUM PC or Your Own Laptop</strong></p>
+<ul>
+<li><p>Register your account at <a class="reference external" href="https://tu-muenchen.maps.arcgis.com/" rel="noreferer noopener" target="_blank">ArcGIS Online</a>. (0.2.1)</p></li>
+<li><p>If using your own laptop (it requires Windows OS or a Windows Virtual Machine), download and install ArcGIS Pro, then launch it and sign in with your TUM credentials. (0.2)</p></li>
+<li><p>If using a TUM PC, launch the pre-installed ArcGIS Pro and sign in with your TUM credentials. (0.3, 0.4)</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Learning How to Properly Save Data on a TUM PC and Use Your Personal Webdisk</strong> (0.6, 0.7)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Getting Familiar with the Study Area of the Data</strong> (0.5, 0.8)</p></li>
+</ul>
+</section>
+<section id="advanced-tasks">
+<h2>Advanced Tasks<a class="headerlink" href="#advanced-tasks" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[Geodata Format]</strong> Understand what a Geodatabase (.gdb) is and how it functions.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[Software Evolution]</strong> Compare the legacy ArcGIS Desktop suite (ArcMap, ArcCatalog, ArcToolbox , ArcScene, and ArcGlobe) with ArcGIS Pro, and summarize their key differences.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[ArcGIS Online]</strong> Explore the <a class="reference external" href="https://www.arcgis.com/index.html" rel="noreferer noopener" target="_blank">ArcGIS Online</a> platform and learn about its main features and integration with ArcGIS Pro.</p></li>
+</ul>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<section id="common-platforms-for-gis-tasks">
+<h3>Common Platforms for GIS Tasks<a class="headerlink" href="#common-platforms-for-gis-tasks" title="Link to this heading">#</a></h3>
+<p>Different GIS tasks require different platforms. For example, imagine you need to:</p>
+<ul class="simple">
+<li><p><strong>Route Optimization</strong>: Plan the safest, greenest, and flattest route for a city-wide cycling event.</p></li>
+<li><p><strong>Change Detection</strong>: Watch satellite images to see how a newly-built park turns from brown to vibrant green over a few months.</p></li>
+<li><p><strong>Collaborative Mapping</strong>: Build a map for your favorite hiking trails, letting friends leave geotagged comments and upload photos.</p></li>
+<li><p><strong>Urban Planning</strong>: Track population movement to help decide where to build new schools, hospitals, or public transport lines.</p></li>
+<li><p><strong>Crowd Analytics</strong>: Analyze mobile phone data to understand how people move through the city during a festival to optimize bus schedules.</p></li>
+</ul>
+<p>To tackle challenges like these, here are the most common types of platforms:</p>
+<ol class="arabic simple">
+<li><p><strong>Desktop GIS Software</strong>: Powerful, all-in-one applications for analysis, visualization, and cartography.</p>
+<ul class="simple">
+<li><p>Commercial: <a class="reference external" href="https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview" rel="noreferer noopener" target="_blank">ArcGIS Pro</a></p></li>
+<li><p>Open Source: <a class="reference external" href="https://qgis.org/" rel="noreferer noopener" target="_blank">QGIS</a></p></li>
+</ul>
+</li>
+<li><p><strong>Programming &amp; Scripting</strong>: Using code to automate workflows and perform custom analysis, typically with Python libraries like <a class="reference external" href="https://pro.arcgis.com/en/pro-app/arcpy/main/arcpy-a-python-package.htm" rel="noreferer noopener" target="_blank">ArcPy</a>, <a class="reference external" href="https://shapely.readthedocs.io/" rel="noreferer noopener" target="_blank">Shapely</a>, <a class="reference external" href="https://geopandas.org/" rel="noreferer noopener" target="_blank">GeoPandas</a>.</p></li>
+<li><p><strong>Web GIS &amp; Mapping</strong>: Building interactive maps and applications for web browsers using libraries like <a class="reference external" href="https://openlayers.org/" rel="noreferer noopener" target="_blank">OpenLayers</a> or APIs from providers like <a class="reference external" href="https://developers.google.com/maps" rel="noreferer noopener" target="_blank">Google Maps</a>.</p></li>
+<li><p><strong>Custom Application Development</strong>: Creating highly specialized tools by extending existing software (e.g., via the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/sdk/" rel="noreferer noopener" target="_blank">ArcGIS Pro SDK</a>) or building applications from the ground up (e.g., with <a class="reference external" href="https://gdal.org/en/stable/" rel="noreferer noopener" target="_blank">GDAL</a>).</p></li>
+</ol>
+</section>
+<section id="reference-links">
+<h3>Reference Links<a class="headerlink" href="#reference-links" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/what-is-a-geodatabase-.htm" rel="noreferer noopener" target="_blank">What is a geodatabase?</a></p></li>
+<li><p><a class="reference external" href="http://pro.arcgis.com/en/pro-app/latest/help/main/welcome-to-the-arcgis-pro-app-help.htm" rel="noreferer noopener" target="_blank">ArcGIS Pro help</a></p></li>
+<li><p><a class="reference external" href="https://www.esri.com/en-us/arcgis/products/arcgis-pro/resources" rel="noreferer noopener" target="_blank">ArcGIS Pro Resources | Tutorials, Documentation, Videos &amp; More</a></p></li>
+</ul>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../lectures/L12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">L12: Open Geospatial Data II</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lessons/E0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 0</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-structure">Exercise Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-manual">User Manual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-platform-arcgis-pro">Exercise Platform: ArcGIS Pro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-platforms-for-gis-tasks">Common Platforms for GIS Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-links">Reference Links</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

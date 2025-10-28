@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E2: Symbolization in a GIS &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/E2';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/E2.html" />
+    <link rel="icon" href="../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2" href="lessons/E2.html" />
+    <link rel="prev" title="E1" href="slides/E1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="E0.html">E0: Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E1.html">E1: Selecting and Editing Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">E2: Symbolization in a GIS</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/exercises/E2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E2: Symbolization in a GIS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-submission">Assignment Submission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e2-symbolization-in-a-gis">
+<h1>E2: Symbolization in a GIS<a class="headerlink" href="#e2-symbolization-in-a-gis" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Symbolization is the process of assigning <strong>visual variables</strong> (size, shape, color value, color hue, orientation, texture, etc.) to <strong>features</strong> (points, lines, polygons, or rasters) in order to communicate their underlying <strong>attributes</strong> effectively.</p>
+<p>In other words, symbolization involves encoding not only the geometry (including geographic location) of features but also their attributes through appropriate visual variables.</p>
+<p>For example,</p>
+<ul class="simple">
+<li><p>Points: Size can represent quantitative attributes such as population or magnitude, while shape can distinguish different feature types (e.g., schools, hospitals, or landmarks).</p></li>
+<li><p>Lines: Width may indicate traffic capacity or flow intensity, and color hue can differentiate road classes.</p></li>
+<li><p>Polygons: Color value (lightness or darkness) can express density or intensity, color hue can represent categorical differences such as land use types, and texture can visualize surface characteristics.</p></li>
+<li><p>Rasters: Color value and color hue are often combined in color ramps to depict continuous phenomena, such as elevation, temperature, or vegetation index.</p></li>
+</ul>
+<p>Effective symbolization requires that the relationship between a symbol and the attribute it represents be clear and easily interpretable. The choice of visual variable primarily depends on whether the data are qualitative (categorical) or quantitative (numerical).</p>
+<p>Read more about <a class="reference external" href="https://www.axismaps.com/guide/visual-variables" rel="noreferer noopener" target="_blank">visual variables</a>.</p>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/89e6686e077c0bdd1f6fafee899f2c50/Symbols.zip"><code class="xref download docutils literal notranslate"><span class="pre">Symbols</span></code></a></p></li>
+</ul>
+</section>
+<section id="basic-tasks">
+<h2>Basic Tasks<a class="headerlink" href="#basic-tasks" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>💡 Please note that some tasks rely on the results of the last Exercise, including:</p>
+<ul class="simple">
+<li><p>The newly created <em>tram_stops</em> and <em>underground_stations</em> layers in 1.11.1,</p></li>
+<li><p>The updated column <em>amenity</em> with the value <em>TUM</em> in 1.12.3,</p></li>
+<li><p>The newly created field <em>level_num</em> in 1.12.4,</p></li>
+<li><p>The newly created field <em>speed_num</em> in 1.9.2,</p></li>
+<li><p>The newly created <em>underground_lines</em> layer in 1.8.</p></li>
+</ul>
+</div></blockquote>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Uniform Symbolization</strong> (2.2)</p>
+<ul>
+<li><p>Symbolizing Bus Stops with Single Symbol (2.2.1)</p>
+<ul>
+<li><p>(Add <code class="docutils literal notranslate"><span class="pre">bus_stops</span></code> layer from the geodatabase.)</p></li>
+<li><p>Symbolize bus stops using an appropriate point symbol from the gallery.</p></li>
+<li><p>Adjust the color and size of the symbols if needed.</p></li>
+</ul>
+</li>
+<li><p>Symbolizing Tram Stops and Underground Stations with Single Symbol (2.2.2)</p>
+<ul>
+<li><p>Symbolize tram stops and underground stations with external logo files <code class="docutils literal notranslate"><span class="pre">Tram_logo.svg</span></code> and <code class="docutils literal notranslate"><span class="pre">UBahn_logo.svg</span></code> from the <code class="docutils literal notranslate"><span class="pre">Symbols</span></code> folder.</p></li>
+<li><p>Adjust the symbol size if needed.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Qualitative Symbolization</strong> (2.3)</p>
+<ul>
+<li><p>Symbolizing Museums and TUM Buildings with Unique Values (2.3.1)</p>
+<ul>
+<li><p>Symbolize museums from the <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer in a unique color by its <code class="docutils literal notranslate"><span class="pre">tourism</span></code> field.</p></li>
+<li><p>Symbolize TUM buildings from the <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer in a different unique color by its value <code class="docutils literal notranslate"><span class="pre">TUM</span></code> in the <code class="docutils literal notranslate"><span class="pre">amenity</span></code> field.</p></li>
+<li><p>Symbolize all the other buildings in another different unique color.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Quantitative Symbolization</strong> (2.4)</p>
+<ul>
+<li><p>Symbolizing Buildings with Graduated Colors</p>
+<ul>
+<li><p>Symbolize buildings with graduated colors by building heights, calculated with <code class="docutils literal notranslate"><span class="pre">level_num</span></code> and a standard story height of 3.5 m. (2.4.1)</p></li>
+<li><p>Try different classification methods, classify and symbolize the building heights into reasonable classes. (2.4.2, 2.4.3)</p></li>
+<li><p>Assign a neutral light grey color to the <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">data</span></code> class. (2.4.3)</p></li>
+</ul>
+</li>
+<li><p>Symbolizing Roads with Proportional Symbols (2.4.4)</p>
+<ul>
+<li><p>Symbolize roads with proportional line widths by the allowed maximum speed in the field <code class="docutils literal notranslate"><span class="pre">speed_num</span></code>.</p></li>
+<li><p>Exclude the roads with null values and set an appropriate <em>Maximum Size</em> value.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Multi-Layer Symbolization</strong> (2.5)</p>
+<ul>
+<li><p>Symbolizing Roads with Cased Line Symbols</p>
+<ul>
+<li><p>Symbolize all the car-traffic roads with cased line symbols by the field <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">of</span> <span class="pre">road</span></code> (with the values <code class="docutils literal notranslate"><span class="pre">secondary</span></code>, <code class="docutils literal notranslate"><span class="pre">secondary_link</span></code>, <code class="docutils literal notranslate"><span class="pre">tertiary</span></code>, <code class="docutils literal notranslate"><span class="pre">residential</span></code>). (2.5.1)</p></li>
+<li><p>Symbolize all the other roads with a thin line symbol in a light grey color. (2.5.1)</p></li>
+<li><p>Join and merge the cased line symbols to show connectivity across individual road segments. (2.5.2)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Scale-Based Symbolization</strong> (2.6)</p>
+<ul>
+<li><p>Applying Scale-Based Symbol Classes to Roads (2.6.1)</p>
+<ul>
+<li><p>Set all the car-traffic roads to be visible between 1:10,000 and larger.</p></li>
+<li><p>Set all the other roads to be visible between 1:5,000 and larger.</p></li>
+</ul>
+</li>
+<li><p>Applying Scale-Based Symbol Sizing to Public Transport Points (2.6.2)</p>
+<ul>
+<li><p>Set scale-based symbol sizing to all the bus stops, tram stops and underground stations (e.g., 50 pt at 1:1,000, … 10 pt at 1:10,000, … 1 pt at 1:100,000,000).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Symbolization with Transparency</strong> (2.7)</p>
+<ul>
+<li><p>Try the <em>Swipe</em> tool to compare <code class="docutils literal notranslate"><span class="pre">orthophoto</span></code> and <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer.</p></li>
+<li><p>Adjust the <em>transparency</em> of the <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer so that the <code class="docutils literal notranslate"><span class="pre">orthophoto</span></code> shows through.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Combining Symbolization Skills</strong> (2.8)</p>
+<ul>
+<li><p>Symbolize the underground lines U1 - U6 using the styles shown below.
+<img alt="U-Bahn" src="../_images/E2_UBahn.png" /></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="advanced-tasks">
+<h2>Advanced Tasks<a class="headerlink" href="#advanced-tasks" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>[Symbology in GIS]</strong> Compare and identify common symbology methods in ArcGIS Pro for points, lines, and polygons, and reflect on how different visual variables support qualitative and quantitative data.</p></li>
+<li><p><strong>[Custom Color Ramp]</strong> Explore <a class="reference external" href="https://colorbrewer2.org/" rel="noreferer noopener" target="_blank">ColorBrewer</a> to design a custom color ramp for building heights (or any other quantitative attribute), and apply it using <em>Graduated Colors</em> symbology.</p></li>
+<li><p><strong>[Bivariate Symbology]</strong> Experiment with <em>Bivariate Symbology</em> in the buildings layer — for example, combining height and area to reveal multidimensional spatial patterns.</p></li>
+<li><p><strong>[Arcade Expressions]</strong> Use <em>Arcade expressions</em> to create flexible, data-driven symbolization — for instance, by combining road type and speed limit into a single rule.</p></li>
+<li><p><strong>[Mixed Symbology]</strong> Use <em>Vary Symbology by Attribute</em> to combine multiple visual variables within the same layer, such as size, color, rotation and transparency, and observe how this affects the map’s readability.</p></li>
+<li><p><strong>[From Symbology to Map Styles]</strong> Explore web map symbology using <a class="reference external" href="https://maputnik.github.io/" rel="noreferer noopener" target="_blank">Maputnik</a>, experiment with colors, line widths, and feature visibility across zoom levels, and reflect on how web map styles differ from symbology in ArcGIS Pro.</p></li>
+<li><p><strong>[Visual Variables]</strong> Explore the dictionary of visual variables (e.g., <a class="reference external" href="https://www.axismaps.com/guide/visual-variables" rel="noreferer noopener" target="_blank">here</a>) and examine how each variable influences map perception.</p></li>
+</ul>
+</section>
+<section id="assignment-submission">
+<h2>Assignment Submission<a class="headerlink" href="#assignment-submission" title="Link to this heading">#</a></h2>
+<p>Submit two screenshots (.png or .jpg) in Moodle by <strong>next Monday (03.11.2025)</strong> showing the following results.</p>
+<ul class="simple">
+<li><p><strong>Screenshot A:</strong></p>
+<ul>
+<li><p>Results of 2.2: symbolized Public Transport Points (including Underground Stations, Tram Stops, and Bus Stops),</p></li>
+<li><p>Results of 2.8: symbolized Underground Lines,</p></li>
+<li><p>Symbolized Tram Lines with an appropriate style.</p></li>
+</ul>
+</li>
+<li><p><strong>Screenshot B:</strong></p>
+<ul>
+<li><p>Results of 2.4.1 - 2.4.3: symbolized Buildings with graduated colors by building heights,</p></li>
+<li><p>Results of 2.5: symbolized Roads with Cased Line Symbols.</p></li>
+</ul>
+</li>
+</ul>
+<p>Please pay attention to the <strong>drawing order</strong> between layers, and only show the required results in each screenshot.</p>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.axismaps.com/guide/visual-variables" rel="noreferer noopener" target="_blank">Visual Variables for Cartography | Axis Maps</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/layer-properties/symbolize-feature-layers.htm" rel="noreferer noopener" target="_blank">ArcGIS Pro: Symbolize Feature Layers</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/layer-properties/scale-based-symbol-classes.htm" rel="noreferer noopener" target="_blank">Use Scale-Based Symbol Classes in ArcGIS Pro</a></p></li>
+<li><p><a class="reference external" href="https://developers.arcgis.com/arcade/" rel="noreferer noopener" target="_blank">Arcade: The ArcGIS Expression Language</a></p></li>
+</ul>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="slides/E1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">E1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lessons/E2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-submission">Assignment Submission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

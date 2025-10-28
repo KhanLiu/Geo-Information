@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E3: Georeferencing and Modifying Features &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/drafts/E3';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/drafts/E3.html" />
+    <link rel="icon" href="../../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E0.html">E0: Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E1.html">E1: Selecting and Editing Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E2.html">E2: Symbolization in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/exercises/drafts/E3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E3: Georeferencing and Modifying Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-aspects-of-projections">Mathematical aspects of projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#great-circle-navigation-and-shortest-paths">Great-circle navigation and shortest paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projections">Projections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-map-projections-and-coordinates">1. Specifying Map Projections and Coordinates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#georeferencing-a-raster">2. Georeferencing a Raster</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-tables">3. Adding Tables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-features">4. Modifying Features</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e3-georeferencing-and-modifying-features">
+<h1>E3: Georeferencing and Modifying Features<a class="headerlink" href="#e3-georeferencing-and-modifying-features" title="Link to this heading">#</a></h1>
+<section id="warm-up">
+<h2>Warm Up<a class="headerlink" href="#warm-up" title="Link to this heading">#</a></h2>
+<p>You will find detailed guidance and general information about <strong>CRS</strong> (Coordinate Reference Systems) and <strong>map projections</strong> in another document associated with this exercise.<br />
+Here, we will take a step further to deepen your understanding.</p>
+<hr class="docutils" />
+<section id="mathematical-aspects-of-projections">
+<h3>Mathematical aspects of projections<a class="headerlink" href="#mathematical-aspects-of-projections" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Why can’t the Earth (or an orange peel) be flattened without distortion?</p>
+</div></blockquote>
+<p>This question is fundamentally about <strong>curvature</strong>. From a mathematical perspective, <strong>Gauss’s Theorema Egregium</strong>(thanks Gaussian again!) tells us that the <strong>intrinsic curvature</strong> of a surface is preserved under transformations that do not stretch or tear.<br />
+Since the Earth is (approximately) a sphere, and a sphere has <strong>positive curvature</strong> while a flat plane has <strong>zero curvature</strong>, you <strong>cannot map one onto the other without distortion</strong>.</p>
+<p>For a fun and visual explanation, see: <a class="reference external" href="https://www.youtube.com/watch?v=UYiAlYlSwBo&amp;amp;ab_channel=Mathemaniac" rel="noreferer noopener" target="_blank">The clever way curvature is described in math</a>, or
+<a class="reference external" href="https://www.youtube.com/watch?v=e2tgBoRozPc&amp;amp;ab_channel=%E6%AF%95%E5%AF%BCTHU" rel="noreferer noopener" target="_blank">There is a wonderful way of eating pizza, but you don’t know why</a></p>
+<ul class="simple">
+<li><p><strong>Reversibility</strong>:<br />
+Most common map projections are <strong>not perfectly reversible</strong>. Once a spherical surface is projected onto a plane, certain geometric properties are altered (e.g., distances, areas, or shapes).</p>
+<ul>
+<li><p><em>Example</em>: A Mercator projection preserves angles but heavily distorts area; reversing it requires knowing the original CRS and applying a non-linear transformation.</p></li>
+</ul>
+</li>
+<li><p><strong>Security considerations</strong>:<br />
+In some sensitive applications, datasets may use intentionally unusual or undocumented projections to <strong>hinder reverse engineering or prevent accurate coordinate transformation</strong> — a kind of <em>cartographic encryption</em>.
+This is common in many applications you use every day, such as Google Maps or Apple Maps, especially when you use the API.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="great-circle-navigation-and-shortest-paths">
+<h3>Great-circle navigation and shortest paths<a class="headerlink" href="#great-circle-navigation-and-shortest-paths" title="Link to this heading">#</a></h3>
+<p>On a sphere, the shortest path between two points is along a <strong>great circle</strong> (the intersection of the sphere with a plane passing through its center).
+In many map projections, this shortest route appears <strong>curved</strong> — especially in maps like Mercator — even though it is the geodesic path on the globe.</p>
+<ul class="simple">
+<li><p>This has practical importance in:</p>
+<ul>
+<li><p><strong>Aviation and maritime navigation</strong>: Great-circle routes minimize fuel and time.</p></li>
+<li><p><strong>Geodesy and surveying</strong>: Accurate shortest-path computation requires the Earth’s ellipsoidal shape, not just a sphere.</p></li>
+</ul>
+</li>
+<li><p><em>Example</em>: The flight path from Frankfurt to Los Angeles looks like an arc over Greenland on a Mercator map, but it is nearly a straight great-circle route on a globe.</p></li>
+</ul>
+<figure class="align-default" id="fra-lax-fig">
+<img alt="exercises/images/ex3/FRA-LAX.png" src="exercises/images/ex3/FRA-LAX.png" />
+<figcaption>
+<p><span class="caption-text">The flight path from Frankfurt to Los Angeles</span><a class="headerlink" href="#fra-lax-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>From the perspective of <em>geodesy</em>, a <strong>geodetic line</strong> is the shortest path between two points on a curved surface, such as the Earth’s surface.</p>
+<ul>
+<li><p>On a sphere, it corresponds to a great circle; on an <em>ellipsoid</em>, it is slightly curved and does not maintain a constant bearing.</p></li>
+<li><p>An interesting fact is that the initial bearing from A to B is not the same as the initial bearing from B to A on an ellipsoid. This is because the <strong>Earth’s curvature is not uniform in all directions</strong> — the ellipsoid is flattened at the poles — so the geodetic azimuth changes along the path. Although the path itself is the same geometric curve in both directions, the bearings at the start and end points differ(Earth is not perfect sphere, even not a perfect ellipsoid).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="projections">
+<h3>Projections<a class="headerlink" href="#projections" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Classification by preserved property</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Conformal projections</strong> — preserve local angles/shapes (e.g., Mercator, Lambert Conformal Conic).</p></li>
+<li><p><strong>Equal-area projections</strong> — preserve area measurements (e.g., Albers Equal Area, Mollweide).</p></li>
+<li><p><strong>Equidistant projections</strong> — preserve distances from one or two points/lines (e.g., Azimuthal Equidistant).</p></li>
+<li><p><strong>Compromise projections</strong> — minimize overall distortion without fully preserving one property (e.g., Robinson, Winkel Tripel).</p></li>
+</ol>
+</li>
+</ul>
+<figure class="align-default" id="mercator-fig">
+<img alt="exercises/images/ex3/mercator_size.gif" src="exercises/images/ex3/mercator_size.gif" />
+<figcaption>
+<p><span class="caption-text">World Mercator projection with country going to true size</span><a class="headerlink" href="#mercator-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Units and computation in a CRS</strong>:</p>
+<ul>
+<li><p>In <strong>projected coordinate systems</strong>, distances and areas are measured in linear units (meters, feet).</p></li>
+<li><p>In <strong>geographic coordinate systems</strong>, coordinates are in degrees; calculating distances requires spherical or ellipsoidal formulas.</p></li>
+<li><p>Area computation on a sphere/ellipsoid involves integrating over curved surfaces and must account for the CRS.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><p><strong>Takeaway</strong>: No single projection can preserve all spatial properties. Your choice of projection should be guided by the task:</p>
+<ul class="simple">
+<li><p>Preserve shape for navigation and angular measurements.</p></li>
+<li><p>Preserve area for thematic mapping and statistics.</p></li>
+<li><p>Use compromise projections for balanced world maps.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="task">
+<h2>Task<a class="headerlink" href="#task" title="Link to this heading">#</a></h2>
+<section id="descriptions">
+<h3>Descriptions<a class="headerlink" href="#descriptions" title="Link to this heading">#</a></h3>
+<p>In this exercise, you’ll deepen your understanding of <strong>coordinate reference systems (CRS)</strong> and <strong>map projections</strong>, learn how to <strong>minimize distortion</strong> by reprojecting data into a local system, and practice <strong>spatial editing workflows</strong> in ArcGIS Pro. Detailed instructions in <code class="xref download docutils literal notranslate"><span class="pre">Lesson</span> <span class="pre">3</span></code></p>
+<p>&amp; You can <a class="reference internal" href="#./lessons/lesson3.md"><span class="xref myst">Click here to look</span></a></p>
+<section id="data">
+<h4>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orthophoto.tif</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">construction_plan.png</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Address_points.txt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Housenumbers.txt</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Change the map projection to a local <strong>UTM</strong> projection and set units to meters.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Calculate and assign the correct <strong>UTM zone</strong> to your dataset.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Georeference</strong> a raster (orthophoto and construction plan) to align with existing vector data.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Add and visualize tabular data by:</p>
+<ul>
+<li><p>Creating point features from XY coordinate tables.</p></li>
+<li><p>Geocoding addresses without coordinates.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Modify existing features by:</p>
+<ul>
+<li><p>Editing and reshaping vertices.</p></li>
+<li><p>Adding new polygons from construction plans.</p></li>
+<li><p>Splitting polygons into separate features.</p></li>
+<li><p>Clipping polygons to remove overlaps.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="specifying-map-projections-and-coordinates">
+<h4>1. Specifying Map Projections and Coordinates<a class="headerlink" href="#specifying-map-projections-and-coordinates" title="Link to this heading">#</a></h4>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Calculate the UTM Zone</strong>:</p>
+<ul>
+<li><p>Add a new text field <code class="docutils literal notranslate"><span class="pre">UTM_zone</span></code> to the buildings layer (length = 600).</p></li>
+<li><p>Use the <strong>Calculate UTM Zone</strong> tool to determine the correct zone (likely <code class="docutils literal notranslate"><span class="pre">ETRS</span> <span class="pre">1989</span> <span class="pre">UTM</span> <span class="pre">Zone</span> <span class="pre">32N</span></code>).</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Change Map Projection</strong>:</p>
+<ul>
+<li><p>Open <strong>Map Properties → Coordinate Systems</strong>.</p></li>
+<li><p>Set to <strong>ETRS 1989 UTM Zone 32N</strong> under <em>Projected Coordinate System &gt; UTM &gt; Europe</em>.</p></li>
+<li><p>Change display units to <strong>Meters</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="georeferencing-a-raster">
+<h4>2. Georeferencing a Raster<a class="headerlink" href="#georeferencing-a-raster" title="Link to this heading">#</a></h4>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Toggle on the orthophoto layer.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Zoom to the target vector layer (buildings).</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Use <strong>Imagery → Georeference</strong> tools:</p>
+<ul>
+<li><p>Set SRS, turn off unrelated layers.</p></li>
+<li><p>Add 6–10 <strong>control points</strong> matching raster features (e.g., building corners) to vector data.</p></li>
+<li><p>Use a <strong>1st Order Polynomial</strong> transformation.</p></li>
+<li><p>Remove points with high residuals, then <strong>Save</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="adding-tables">
+<h4>3. Adding Tables<a class="headerlink" href="#adding-tables" title="Link to this heading">#</a></h4>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Coordinate Table to Points</strong>:</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">Address_points.txt</span></code> to the project.</p></li>
+<li><p>Use <strong>XY Table To Point</strong> tool: X = Longitude, Y = Latitude, CRS = WGS84.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Geocoding</strong>:</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">Housenumbers.txt</span></code>.</p></li>
+<li><p>Use <strong>Geocode Table</strong> guided workflow:</p>
+<ul>
+<li><p>Locator: ArcGIS World Geocoding Service.</p></li>
+<li><p>Map multiple address fields.</p></li>
+<li><p>Preferred Location Type: <em>Address Location</em>.</p></li>
+<li><p>Limit to Germany.</p></li>
+<li><p>Output as point layer.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="modifying-features">
+<h4>4. Modifying Features<a class="headerlink" href="#modifying-features" title="Link to this heading">#</a></h4>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Snapping</p>
+<ul>
+<li><p>Enable <strong>Vertex Snapping</strong> in <em>Edit → Snapping</em>.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Modify Vertices</p>
+<ul>
+<li><p>Select building with <code class="docutils literal notranslate"><span class="pre">OBJECTID=954</span></code>.</p></li>
+<li><p>Enable <strong>Map Topology</strong>.</p></li>
+<li><p>Use <strong>Modify → Edit Vertices</strong> to align it with adjacent building rows.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Reshape &amp; Add Vertices</p>
+<ul>
+<li><p>Georeference <code class="docutils literal notranslate"><span class="pre">construction_plan.png</span></code> to buildings layer.</p></li>
+<li><p>Delete demolished buildings (<code class="docutils literal notranslate"><span class="pre">OBJECTID=1901</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">1902</span></code>).</p></li>
+<li><p>Reshape <code class="docutils literal notranslate"><span class="pre">OBJECTID=1653</span></code> to reflect partial demolition.</p></li>
+<li><p>Digitize new building footprints from the plan.</p></li>
+<li><p>Save edits; create a new template if needed.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Split a Feature</p>
+<ul>
+<li><p>Select polygon with <code class="docutils literal notranslate"><span class="pre">OBJECTID=1859</span></code> (State Museum of Egyptian Art + University of Television and Film).</p></li>
+<li><p>Use <strong>Modify → Split</strong> to separate into two polygons.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">name</span></code> field accordingly.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Clip a Feature</p>
+<ul>
+<li><p>Select lawn polygon from Lesson 1.</p></li>
+<li><p>Use <strong>Clip</strong> tool with Alte Pinakothek building as clip feature.</p></li>
+<li><p>Discard clipped interior and preserve remainder.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="advance-task">
+<h3>Advance Task<a class="headerlink" href="#advance-task" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Vector data (e.g., Shapefile)</strong></p>
+<ul>
+<li><p>Load and print basic info: CRS, feature count, extent.</p></li>
+<li><p>Reproject to another CRS and compare length/area differences.</p></li>
+<li><p>Join attribute tables based on a key field.</p></li>
+</ul>
+</li>
+<li><p><strong>Raster data (e.g., GeoTIFF)</strong></p>
+<ul>
+<li><p>Load and check CRS, resolution, and extent.</p></li>
+<li><p>Reproject to match a vector layer’s CRS.</p></li>
+<li><p>Clip by a polygon boundary.</p></li>
+</ul>
+</li>
+<li><p>Georeferencing check</p>
+<ul>
+<li><p>Calculate RMS error from control points.</p></li>
+<li><p>Test different transformation orders (1st-order vs. 2nd-order) and compare accuracy.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/data/imagery/overview-of-georeferencing.htm" rel="noreferer noopener" target="_blank">Overview of georeferencing</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/properties/specify-a-coordinate-system.htm" rel="noreferer noopener" target="_blank">Work with Coordinate Systems</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/properties/list-of-supported-map-projections.htm" rel="noreferer noopener" target="_blank">Supported map projections</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/properties/geographic-coordinate-system-transformation.htm" rel="noreferer noopener" target="_blank">Geographic datum transformations</a></p></li>
+<li><p><a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.crs.html" rel="noreferer noopener" target="_blank">geopandas.GeoDataFrame.crs</a></p></li>
+<li><p><a class="reference external" href="https://rasterio.readthedocs.io/en/latest/topics/georeferencing.html" rel="noreferer noopener" target="_blank">Georeferencing — rasterio 1.5.0.dev documentation</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises\drafts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-aspects-of-projections">Mathematical aspects of projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#great-circle-navigation-and-shortest-paths">Great-circle navigation and shortest paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projections">Projections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-map-projections-and-coordinates">1. Specifying Map Projections and Coordinates</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#georeferencing-a-raster">2. Georeferencing a Raster</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-tables">3. Adding Tables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-features">4. Modifying Features</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,40 +1,82 @@
+format: jb-book
 root: README
-entries:
-- file: content/Home
-  title: About
-  entries:
-  - file: content/about
-- file: lectures/info_lec
-  title: Lectures
-  entries:
-  - file: lectures/lec01
-  - file: lectures/lec02
-  - file: lectures/lec03
-  - file: lectures/lec04
-  - file: lectures/lec05
-- file: content/info_ex
-  title: Exercises
-  entries:
-  - file: content/ex0
-  - file: content/ex1
-  - file: content/ex2
-  - file: content/ex3
-  - file: content/ex4
-  - file: content/ex5
-  - file: content/ex6
-  - file: content/ex7
-  - file: content/ex8
-  - file: content/ex9
-- file: content/lessons/info_les
-  title: Instructions
-  entries:
-  - file: content/lessons/lesson0
-  - file: content/lessons/lesson1
-  - file: content/lessons/lesson2
-  - file: content/lessons/lesson3
-  - file: content/lessons/lesson4
-  - file: content/lessons/lesson5
-  - file: content/lessons/lesson6
-  - file: content/lessons/lesson7
-  - file: content/lessons/portfolio
-  - file: content/lessons/lesson9
+parts:
+  - caption: About
+    chapters:
+    - file: about/welcome
+    - file: about/syllabus
+    - file: about/room-access
+    - file: about/acknowledgements
+
+  - caption: Lectures
+    chapters:
+    - file: lectures/L1
+    - file: lectures/L2
+    - file: lectures/L3
+    - file: lectures/L4
+    - file: lectures/L5
+    - file: lectures/L6
+    - file: lectures/L7
+    - file: lectures/L8
+    - file: lectures/L9
+    - file: lectures/L10
+    - file: lectures/L11
+    - file: lectures/L12
+
+  - caption: Exercises
+    chapters:
+    - file: exercises/E0
+      sections:
+      - file: exercises/lessons/E0
+    - file: exercises/E1
+      sections:
+      - file: exercises/lessons/E1
+      - file: exercises/slides/E1
+    - file: exercises/E2
+      sections:
+      - file: exercises/lessons/E2
+      - file: exercises/slides/E2
+    - file: exercises/E3
+      sections:
+      - file: exercises/lessons/E3
+      - file: exercises/slides/E3
+    - file: exercises/E4
+      sections:
+      - file: exercises/lessons/E4
+      - file: exercises/slides/E4
+    - file: exercises/E5
+      sections:
+      - file: exercises/lessons/E5
+      - file: exercises/slides/E5
+    - file: exercises/E6
+      sections:
+      - file: exercises/lessons/E6
+      - file: exercises/slides/E6
+    - file: exercises/E7
+      sections:
+      - file: exercises/lessons/E7
+      - file: exercises/slides/E7
+    - file: exercises/E8
+      sections:
+      - file: exercises/lessons/E8
+      - file: exercises/slides/E8
+    - file: exercises/E9
+      sections:
+      - file: exercises/lessons/E9
+      - file: exercises/slides/E9
+    - file: exercises/Portfolio
+      sections:
+      - file: exercises/lessons/Portfolio
+      - file: exercises/slides/Portfolio
+    - file: exercises/E10
+      sections:
+      - file: exercises/lessons/E10
+      - file: exercises/slides/E10
+    - file: exercises/E11
+      sections:
+      - file: exercises/lessons/E11
+      - file: exercises/slides/E11
+    - file: exercises/E12
+      sections:
+      - file: exercises/lessons/E12
+      - file: exercises/slides/E12

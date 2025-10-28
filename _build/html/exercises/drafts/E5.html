@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E5: Spatial Analysis Methods &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/drafts/E5';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/drafts/E5.html" />
+    <link rel="icon" href="../../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E0.html">E0: Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E1.html">E1: Selecting and Editing Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E2.html">E2: Symbolization in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/exercises/drafts/E5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E5: Spatial Analysis Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-facts">Some Facts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-quality">Data Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-of-spatial-data-analysis">Branches of Spatial Data Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thiessen-polygons">1. Thiessen Polygons</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-analysis">2. Buffer Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-ring-buffers">3. Multiple Ring Buffers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-intersect-union">4. Overlay (Intersect / Union)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proximity-analysis">5. Proximity Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-statistics">6. Spatial Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e5-spatial-analysis-methods">
+<h1>E5: Spatial Analysis Methods<a class="headerlink" href="#e5-spatial-analysis-methods" title="Link to this heading">#</a></h1>
+<section id="warm-up">
+<h2>Warm Up<a class="headerlink" href="#warm-up" title="Link to this heading">#</a></h2>
+<section id="some-facts">
+<h3>Some Facts<a class="headerlink" href="#some-facts" title="Link to this heading">#</a></h3>
+<p>Traditionally, <strong>data analysis</strong> has often been seen as the domain of mathematicians and statisticians — it sounds difficult, and in fact, it really can be :&lt;</p>
+<p><strong>Spatial data analysis</strong> is also named such as <em>geostatistics</em> and <em>quantitative geography</em>. In practice, we rarely analyze an entire population; instead, we usually work with <strong>samples</strong>. Based on these samples, we try to draw conclusions about the population as a whole.</p>
+<blockquote>
+<div><p>Obtaining complete and infinite data is impossible — which means that the available data can never fully represent the true underlying distributions. This is also why, in general, <strong>having more data is always better</strong>.</p>
+</div></blockquote>
+<p>However, spatial data analysis brings additional challenges beyond traditional statistics. As discussed in the lecture, some of the most important issues include:  <strong>Spatial dependence (autocorrelation)</strong>; <strong>Spatial heterogeneity</strong>; <strong>MAUP (Modifiable Areal Unit Problem)</strong>. These unique properties make spatial data analysis both more complex and more powerful, offering insights that traditional data analysis cannot capture.</p>
+</section>
+<section id="data-quality">
+<h3>Data Quality<a class="headerlink" href="#data-quality" title="Link to this heading">#</a></h3>
+<p>In the ML &amp; DL, there is a well-known truth:<br />
+<strong>“Good data + simple model is much better than bad data + complex model.”</strong> or “<strong>data quality matters more than data size</strong>”</p>
+<p>Take an example, how to tell if data Is High-Quality in LLM:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criteria</p></th>
+<th class="head"><p>Good Data Looks Like…</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>📘 Accurate</p></td>
+<td><p>Facts are true and reliable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>✍️ Well-written</p></td>
+<td><p>Clear grammar, no typos, logical sentences.</p></td>
+</tr>
+<tr class="row-even"><td><p>🧠 Informative</p></td>
+<td><p>Contains useful knowledge, not fluff.</p></td>
+</tr>
+<tr class="row-odd"><td><p>🌍 Diverse</p></td>
+<td><p>Covers many topics and styles.</p></td>
+</tr>
+<tr class="row-even"><td><p>🚫 Clean</p></td>
+<td><p>No spam, hate speech, or repeated content.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>But when it comes to <strong>spatial data</strong>, quality issues become even more complex. It’s not only about the correctness of attributes, but also about the <strong>location, time, and relationships</strong> of features. A dataset can have perfect attribute values but still be unusable if the geometry is shifted by a few meters, or if the coordinate reference system (CRS) does not match.<br />
+In other words, while ML models suffer mainly from label noise or imbalance, spatial data analysis must also ensure <strong>where, when, and how accurately</strong> features are represented in space.</p>
+</section>
+<section id="branches-of-spatial-data-analysis">
+<h3>Branches of Spatial Data Analysis<a class="headerlink" href="#branches-of-spatial-data-analysis" title="Link to this heading">#</a></h3>
+<p>Spatial data analysis can be seen as consisting of several main branches, each focusing on different aspects of spatial information:</p>
+<ul class="simple">
+<li><p><strong>Spatial Dependence and Spatial Heterogeneity</strong><br />
+Focuses on spatial autocorrelation, spatial weight matrices, and spatial regression models (spatial lag, spatial error, geographically weighted regression).</p></li>
+<li><p><strong>Spatial Accessibility</strong><br />
+Examines spatial distance relationships, proximity analysis, overlay analysis, and network analysis to study accessibility patterns.</p></li>
+<li><p><strong>Spatial Patterns (Spatial Layouts)</strong><br />
+Investigates spatial distributions such as point patterns, grid-based analysis, spatial clustering, and landscape analysis.</p></li>
+<li><p><strong>Spatial Interpolation and Estimation</strong><br />
+Deals with prediction at unsampled locations, including deterministic interpolation (e.g., IDW) and geostatistical methods (e.g., kriging).</p></li>
+</ul>
+</section>
+</section>
+<section id="task">
+<h2>Task<a class="headerlink" href="#task" title="Link to this heading">#</a></h2>
+<section id="descriptions">
+<h3>Descriptions<a class="headerlink" href="#descriptions" title="Link to this heading">#</a></h3>
+<p>In this exercise, you will practice several <strong>fundamental spatial analysis methods</strong> in ArcGIS Pro.
+The goal is to understand how spatial relationships can be modeled and analyzed with GIS. Detailed instructions in <code class="xref download docutils literal notranslate"><span class="pre">Lesson</span> <span class="pre">5</span></code></p>
+<p>&amp; You can <a class="reference internal" href="#./lessons/lesson5.md"><span class="xref myst">Click here to look</span></a></p>
+<section id="data">
+<h4>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code> (Buildings, Roads, Underground Stations, Tram Stops, Cafés)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orthophoto.tif</span></code> (optional reference imagery)</p></li>
+</ul>
+</section>
+</section>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Thiessen (Voronoi) Polygons</strong></p>
+<ul>
+<li><p>Divide space into catchment areas around underground stations.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Buffer Analysis</strong></p>
+<ul>
+<li><p>Create a 50 m buffer around main roads to model zones of influence.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Multiple Ring Buffers</strong></p>
+<ul>
+<li><p>Build reachability zones (250 m, 500 m, 750 m, 1000 m) around underground stations and tram stops.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Intersect Analysis</strong></p>
+<ul>
+<li><p>Identify overlapping areas of equal distance to public transport points.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Union and Dissolve</strong></p>
+<ul>
+<li><p>Combine and aggregate buffer zones for simplified analysis.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Spatial Join</strong></p>
+<ul>
+<li><p>Relate attributes of roads and buffers to buildings based on overlap.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Distance Analysis (Near tool)</strong></p>
+<ul>
+<li><p>Calculate distances from buildings to the nearest cafés.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Attribute Join</strong></p>
+<ul>
+<li><p>Enrich building data by joining café names via key fields.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Spatial Autocorrelation</strong> &amp;&amp; <strong>Generate Near Table</strong></p>
+<ul>
+<li><p>Calculate Moran’s I for café distribution patterns.</p></li>
+<li><p>Compute nearest public transport points for each café and visualize connections.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="thiessen-polygons">
+<h4>1. Thiessen Polygons<a class="headerlink" href="#thiessen-polygons" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Input: underground stations.</p></li>
+<li><p>Create Thiessen polygons → each polygon shows the area closest to a given station.</p></li>
+</ul>
+</section>
+<section id="buffer-analysis">
+<h4>2. Buffer Analysis<a class="headerlink" href="#buffer-analysis" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Input: main roads.</p></li>
+<li><p>Create a 50 m buffer to model zones of influence.</p></li>
+<li><p>Compare with buildings to see which are affected.</p></li>
+</ul>
+</section>
+<section id="multiple-ring-buffers">
+<h4>3. Multiple Ring Buffers<a class="headerlink" href="#multiple-ring-buffers" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Input: tram and underground stations.</p></li>
+<li><p>Build buffers at 250 m, 500 m, 750 m, and 1000 m to show accessibility.</p></li>
+</ul>
+</section>
+<section id="overlay-intersect-union">
+<h4>4. Overlay (Intersect / Union)<a class="headerlink" href="#overlay-intersect-union" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Intersect buffers from tram + underground stations to find overlapping influence areas.</p></li>
+<li><p>Union or dissolve overlapping buffers for simplified coverage zones.</p></li>
+</ul>
+</section>
+<section id="proximity-analysis">
+<h4>5. Proximity Analysis<a class="headerlink" href="#proximity-analysis" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Use <strong>Near tool</strong>: measure distance from each building to nearest café.</p></li>
+<li><p>Use <strong>Generate Near Table</strong>: list nearest transport stop for each café.</p></li>
+</ul>
+</section>
+<section id="spatial-statistics">
+<h4>6. Spatial Statistics<a class="headerlink" href="#spatial-statistics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Run <strong>Moran’s I</strong> on cafés to check if they are clustered, dispersed, or random.</p></li>
+</ul>
+</section>
+</section>
+<section id="advance-task">
+<h3>Advance Task<a class="headerlink" href="#advance-task" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Try to build up some <strong>basic statistics knowledge</strong> — such as <em>Gaussian distribution</em>, <em>hypothesis testing</em>, <em>principal component analysis (PCA)</em>, and <em>linear regression</em>. Meanwhile, practice using <strong>R</strong> or <strong>Jupyter Notebook</strong> to explore these concepts through hands-on examples and simple experiments.</p>
+<ul>
+<li><p>You can check some examples in <a class="reference external" href="https://realpython.com/python-statistics/" rel="noreferer noopener" target="_blank">Python Statistics Fundamentals: How to Describe Your Data</a>, <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html" rel="noreferer noopener" target="_blank">How to calculate summary statistics</a>, <a class="reference external" href="https://github.com/amirjahantab/Gaussian_Distribution_Function" rel="noreferer noopener" target="_blank">Gaussian_Distribution_Function</a>, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html" rel="noreferer noopener" target="_blank">PCA, Sci-kit Learn</a></p></li>
+</ul>
+</li>
+<li><p>Write a program to load your analysis results (e.g., Thiessen polygons, buffers, or Near table), <strong>visualize them</strong>, and <strong>export the map</strong> to an image (PNG/SVG) or an interactive HTML map</p>
+<ul>
+<li><p>Visualizing standard media files such as images is usually straightforward — for example, with <a class="reference external" href="https://pypi.org/project/pillow/" rel="noreferer noopener" target="_blank">PIL</a> or <a class="reference external" href="https://opencv.org/" rel="noreferer noopener" target="_blank">OpenCV</a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/introduction/spatial-analysis-in-arcgis-pro.htm" rel="noreferer noopener" target="_blank">Spatial analysis in ArcGIS Pro</a></p></li>
+<li><p><a class="reference external" href="https://gis.usc.edu/blog/what-is-spatial-data-analysis/" rel="noreferer noopener" target="_blank">What Is Spatial Data Analysis?, USC</a></p></li>
+<li><p><a class="reference external" href="https://spatial-analytics.readthedocs.io/en/latest/" rel="noreferer noopener" target="_blank">Spatial analytics Course, Henrikki Tenkanen</a></p></li>
+<li><p><a class="reference external" href="https://atmamani.github.io/teaching_resources/geopandas/geopandas_spatial_overlays/" rel="noreferer noopener" target="_blank">Geopandas - spatial operations, Atma’s Blog</a></p></li>
+<li><p><a class="reference external" href="https://ocw.mit.edu/courses/11-521-spatial-database-management-and-advanced-geographic-information-systems-spring-2003/" rel="noreferer noopener" target="_blank">MIT OpenCourseWare: Spatial Database Management and Advanced Geographic Information Systems</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises\drafts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-facts">Some Facts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-quality">Data Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-of-spatial-data-analysis">Branches of Spatial Data Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thiessen-polygons">1. Thiessen Polygons</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-analysis">2. Buffer Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-ring-buffers">3. Multiple Ring Buffers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay-intersect-union">4. Overlay (Intersect / Union)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proximity-analysis">5. Proximity Analysis</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-statistics">6. Spatial Statistics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

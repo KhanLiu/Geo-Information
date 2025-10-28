@@ -1,0 +1,812 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E1: Selecting and Editing Features &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/E1';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/E1.html" />
+    <link rel="icon" href="../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 1" href="lessons/E1.html" />
+    <link rel="prev" title="Lesson 0" href="lessons/E0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="E0.html">E0: Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">E1: Selecting and Editing Features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E2.html">E2: Symbolization in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/exercises/E1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E1: Selecting and Editing Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-feature-mean-in-data-science">What Does “Feature” Mean in Data Science?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-feature-mean-in-geographic-information-science">What Does “Feature” Mean in Geographic Information Science?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-geoinformation-special">What Makes Geoinformation Special?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-links">Reference Links</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e1-selecting-and-editing-features">
+<h1>E1: Selecting and Editing Features<a class="headerlink" href="#e1-selecting-and-editing-features" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Welcome to the first Exercise! Before we can perform any complex spatial analysis, we must first master the fundamentals of interacting with the geodata. This Exercise is all about <strong>selecting</strong>, <strong>creating</strong>, and <strong>editing</strong> <strong>features</strong>—the basic building blocks of any geospatial dataset.</p>
+<p>You may find that <strong>“Feature”</strong> is a common term in both Data Science and Geographic Information Science (GIScience), but its meaning differs between the two fields.  Read more about <a class="reference internal" href="#what-does-feature-mean-in-data-science"><span class="xref myst">What Does “Feature” Mean in Data Science?</span></a> and <a class="reference internal" href="#what-does-feature-mean-in-geographic-information-science"><span class="xref myst">What Does “Feature” Mean in Geographic Information Science?</span></a></p>
+<p>Also, read more about <a class="reference internal" href="#what-makes-geoinformation-special"><span class="xref myst">What Makes Geoinformation Special?</span></a>.</p>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/6501d4d22c393c26e57b67f9e9942ed2/Data%20Students.gdb.zip"><code class="xref download docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code></a></p></li>
+</ul>
+<blockquote>
+<div><p>💡 This dataset is identical to the data provided in <a class="reference internal" href="E0.html#data"><span class="std std-ref">E0</span></a>. No need to redownload.</p>
+</div></blockquote>
+</section>
+<section id="basic-tasks">
+<h2>Basic Tasks<a class="headerlink" href="#basic-tasks" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Creating a New Project</strong> (1.2)</p>
+<ul>
+<li><p>Creating a New <em>Map</em> Project</p></li>
+<li><p>Connecting a Folder to the Project (1.2.1)</p>
+<ul>
+<li><p>Connect the folder where the geodatabase <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code> is located to the project.</p></li>
+</ul>
+</li>
+<li><p>Adding a Database (1.2.2)</p>
+<ul>
+<li><p>Add the geodatabase <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code> to the project.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Adding a Layer</strong></p>
+<ul>
+<li><p>Adding a Vector Layer (1.3)</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">roads</span></code>, <code class="docutils literal notranslate"><span class="pre">railways</span></code>, <code class="docutils literal notranslate"><span class="pre">cafes</span></code>, <code class="docutils literal notranslate"><span class="pre">bus_stops</span></code>, and <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layers from the geodatabase to the map.</p></li>
+</ul>
+</li>
+<li><p>Adding a Raster Layer (1.4)</p>
+<ul>
+<li><p>Add the raster image <code class="docutils literal notranslate"><span class="pre">orthophoto.tiff</span></code> from the geodatabase to the map.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Selecting Features</strong></p>
+<ul>
+<li><p>Using a Pop-Up to Display a Feature’s Attributes (1.5)</p></li>
+<li><p>Selecting by Interactive Feature Selection (1.6)</p>
+<ul>
+<li><p>Select all the TUM buildings using <em>Select by Polygon</em> or other shapes.</p></li>
+</ul>
+</li>
+<li><p>Selecting by Location (1.7)</p>
+<ul>
+<li><p>Select all <code class="docutils literal notranslate"><span class="pre">cafés</span></code> around the TUM buildings within a <code class="docutils literal notranslate"><span class="pre">500-meter</span></code> radius.</p></li>
+</ul>
+</li>
+<li><p>Selecting by Attributes (1.8)</p>
+<ul>
+<li><p>Select all tram lines (<code class="docutils literal notranslate"><span class="pre">fclass=tram</span></code>) and underground lines (<code class="docutils literal notranslate"><span class="pre">fclass=subway</span></code>) of the <code class="docutils literal notranslate"><span class="pre">railways</span></code> layer.</p></li>
+<li><p>Copy the selected features into a separate layer, respectively named <code class="docutils literal notranslate"><span class="pre">tram_lines</span></code> and <code class="docutils literal notranslate"><span class="pre">underground_lines</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Creating a New Feature Class</strong> (1.10)</p>
+<ul>
+<li><p>Create a new polygon feature class named <code class="docutils literal notranslate"><span class="pre">Lawn</span></code> in your project geodatabase.</p></li>
+<li><p>Create two new point feature classes named <code class="docutils literal notranslate"><span class="pre">tram_stops</span></code> and <code class="docutils literal notranslate"><span class="pre">underground_stations</span></code>.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Editing New Features</strong> (1.11)</p>
+<ul>
+<li><p>Creating New Features (1.11.1)</p>
+<ul>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Lawn</span></code> layer, digitize the rectangular lawn around the Old Pinakothek as a new feature, using the orthophoto as reference.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">tram_stops</span></code> and <code class="docutils literal notranslate"><span class="pre">underground_stations</span></code> layers, digitize one point per stop or station using the MVG map (Page 18 in Lesson 1) as reference.</p></li>
+</ul>
+</li>
+<li><p>Creating a New Template for Feature Creation (1.11.2)</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Editing Fields and Attributes of Features</strong> (1.9, 1.12)</p>
+<ul>
+<li><p>Renaming Fields (1.9.1)</p>
+<ul>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">roads</span></code> layer, rename the field <code class="docutils literal notranslate"><span class="pre">highway</span></code> to <code class="docutils literal notranslate"><span class="pre">type</span></code> (alias: <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">of</span> <span class="pre">road</span></code>) and highlight it.</p></li>
+<li><p>Keep only the fields <code class="docutils literal notranslate"><span class="pre">OBJECTID</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">maxspeed</span></code>, and <code class="docutils literal notranslate"><span class="pre">oneway</span></code> visible.</p></li>
+</ul>
+</li>
+<li><p>Converting a String Field to a Numeric Field (1.9.2)</p>
+<ul>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">roads</span></code> layer, convert the string field <code class="docutils literal notranslate"><span class="pre">maxspeed</span></code> into a numeric field <code class="docutils literal notranslate"><span class="pre">speed_num</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Adding New Fields (1.12.1)</p>
+<ul>
+<li><p>Add a new text field named <code class="docutils literal notranslate"><span class="pre">name</span></code> to both the <code class="docutils literal notranslate"><span class="pre">tram_stops</span></code> and <code class="docutils literal notranslate"><span class="pre">underground_stations</span></code> layers.</p></li>
+</ul>
+</li>
+<li><p>Editing Fields (1.12.2)</p>
+<ul>
+<li><p>For both <code class="docutils literal notranslate"><span class="pre">tram_stops</span></code> and <code class="docutils literal notranslate"><span class="pre">underground_stations</span></code> layers, update the <code class="docutils literal notranslate"><span class="pre">name</span></code> field directly in the Attribute Table by typing correct names from the MVG plan.</p></li>
+</ul>
+</li>
+<li><p>Calculating Fields (1.12.3)</p>
+<ul>
+<li><p>Select all TUM building polygons and calculate the field <code class="docutils literal notranslate"><span class="pre">amenity</span></code> in the <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer.</p></li>
+<li><p>Use the <em>Calculate Field</em> tool, assign the value <code class="docutils literal notranslate"><span class="pre">TUM</span></code> to the selected records.</p></li>
+</ul>
+</li>
+<li><p>Combining Editing Skills (1.12.4)</p>
+<ul>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">buildings</span></code> layer, replace empty values in <code class="docutils literal notranslate"><span class="pre">building_l</span></code> with the text <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">data</span></code>.</p></li>
+<li><p>Create a new numeric field <code class="docutils literal notranslate"><span class="pre">level_num</span></code> and calculate its values from <code class="docutils literal notranslate"><span class="pre">building_l</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="advanced-tasks">
+<h2>Advanced Tasks<a class="headerlink" href="#advanced-tasks" title="Link to this heading">#</a></h2>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[Core Concepts]</strong> Differentiate the following core terms and draw a diagram to illustrate the hierarchical and logical relationships between them: Project, Database, Layer, Vector Layer, Raster Layer, Feature Class, Feature, Attribute Table, Field, Attribute.</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[Common Vector Data Format]</strong> Compare the four common vector geographic data formats: Geodatabase (.gdb), Shapefile (.shp), GeoPackage (.gpkg), and GeoJSON (.geojson).</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[GIS with Programming]</strong> The <a class="reference internal" href="#basic-tasks"><span class="xref myst">Basic Tasks</span></a> mentioned above can also be performed programmatically using languages such as <strong>Python</strong>, particularly using packages such as <strong>GeoPandas</strong> and <strong>Shapely</strong>. Use Python to complete the following tasks:</p>
+<ul>
+<li><p>Data Management</p>
+<ul>
+<li><p>Load a vector dataset (e.g., a feature class from a Geodatabase)</p></li>
+<li><p>Display the dataset and print an overview of its content (e.g., the first five rows or metadata)</p></li>
+</ul>
+</li>
+<li><p>Attribute Operations</p>
+<ul>
+<li><p>Add, rename, or delete fields</p></li>
+<li><p>Filter features based on attribute values or conditions</p></li>
+<li><p>Calculate or update field values</p></li>
+</ul>
+</li>
+<li><p>Conditional Queries</p>
+<ul>
+<li><p>Select all features that satisfy specific conditions, such as:</p>
+<ul>
+<li><p>Areas larger than a given threshold</p></li>
+<li><p>Points within a defined bounding box</p></li>
+<li><p>Features belonging to a particular category or type</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>[Desktop GIS vs. GIS Programming]</strong> Compare Desktop GIS software (GUI-based) and programming approaches (e.g., Python), discussing their respective advantages and disadvantages.</p></li>
+</ul>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<section id="what-does-feature-mean-in-data-science">
+<h3>What Does “Feature” Mean in Data Science?<a class="headerlink" href="#what-does-feature-mean-in-data-science" title="Link to this heading">#</a></h3>
+<p>In Data Science and Machine Learning, a <strong>“feature”</strong> refers to <strong>a column in your dataset</strong> — a measurable property or characteristic that describes an observation.</p>
+<p>For instance, if you’re building a model to predict house prices, your features might include:</p>
+<ul class="simple">
+<li><p>Number of bedrooms 🛏️</p></li>
+<li><p>Square footage 📐</p></li>
+<li><p>Distance to the nearest train station 🚉</p></li>
+<li><p>Year built 🗓️</p></li>
+</ul>
+<blockquote>
+<div><p>💡 In simple terms: imagine you’re the computer — for every item in your dataset, the things you know about it are its features.</p>
+</div></blockquote>
+<p>These features serve as the inputs to your models, analyses, and visualizations. Transforming messy, real-world data into structured, meaningful features is part of a process known as Data Engineering (a core task for data scientists and machine learning engineers).</p>
+<p>A typical workflow might look like this:</p>
+<blockquote>
+<div><p>Data Collection → Raw Data → Preprocessing → Feature Extraction → Modeling / Analysis</p>
+</div></blockquote>
+<p>Features can be:</p>
+<ul class="simple">
+<li><p>Built-In: directly measured or collected from raw data.</p></li>
+<li><p>Derived: transformed from existing information (e.g., converting time to “day of week”, applying <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html" rel="noreferer noopener" target="_blank">PCA</a>).</p></li>
+<li><p>Learned: automatically discovered by ML/DL models — though these learned features can sometimes be a bit mysterious. 🤖✨</p></li>
+</ul>
+</section>
+<section id="what-does-feature-mean-in-geographic-information-science">
+<h3>What Does “Feature” Mean in Geographic Information Science?<a class="headerlink" href="#what-does-feature-mean-in-geographic-information-science" title="Link to this heading">#</a></h3>
+<p>In Geographic Information Science (GIS), a <strong>“feature”</strong> specifically refers to a <strong>geometry object</strong> — such as a point, line, or polygon — representing a real-world entity or location. Each feature typically consists of two parts:</p>
+<ul class="simple">
+<li><p><strong>Geometry</strong>: Describes where it is, including spatial shape and location. Also includes auxiliary information like the Coordinate Reference System (CRS).</p></li>
+<li><p><strong>Attributes</strong>: Describe what it is — these are the properties of the feature stored in the attribute table (e.g., name, type, status, ID, etc.).</p></li>
+</ul>
+<blockquote>
+<div><p>When you import geodata in a Desktop GIS software, you’ll find that <strong>all the information</strong> —both Attributes and Geometry— is organized in the attribute table. Each row in the table represents a single feature, and one special column holds its geometry data. From a program’s perspective, a feature is simply one complete row in this structured collection of information.</p>
+</div></blockquote>
+</section>
+<section id="what-makes-geoinformation-special">
+<h3>What Makes Geoinformation Special?<a class="headerlink" href="#what-makes-geoinformation-special" title="Link to this heading">#</a></h3>
+<p>Geoinformation, or geospatial data, isn’t just data with coordinates. Its geographic nature gives it unique characteristics that set it apart from other types of information. Understanding these properties is essential for accurate analysis. Three key concepts are often highlighted:</p>
+<ul class="simple">
+<li><p><strong>Spatial and Temporal Dependence</strong>: This is the embodiment of Tobler’s First Law of Geography: “Everything is related to everything else, but near things are more related than distant things.” This means the value of a variable at one location is not independent of the values at neighboring locations. For instance, heavy traffic in one city block is likely to cause congestion in adjacent blocks, and air pollution from a factory directly affects the air quality of nearby communities.</p></li>
+<li><p><strong>Spatial Heterogeneity (or Non-stationarity)</strong>: This principle states that relationships and patterns can change significantly across a geographic area. A single, global model often fails in a geospatial context. For example, the factors influencing housing prices in a dense urban core are vastly different from those in a rural suburb. Likewise, rainfall patterns can vary dramatically from a coastal region to an inland mountain range within the same country.</p></li>
+<li><p><strong>Place-Sensitive User Interest</strong>: The relevance and value of geoinformation are often directly tied to a specific location, usually the user’s own location. A real-time air quality report is far more valuable to residents living in that area than to someone a thousand miles away. This context-dependency is a core feature of many location-based services and applications.</p></li>
+</ul>
+<p>These unique traits pose direct challenges to traditional statistical methods, which often rely on the assumption that data points are <strong>Independent and Identically Distributed (I.I.D.)</strong>. In the world of geoinformation, this assumption rarely holds true.</p>
+<ul>
+<li><p><strong>The Challenge of Dependence</strong>: Because of spatial dependence, samples are not independent. Ignoring this can lead to biased models and incorrect conclusions.</p>
+<blockquote>
+<div><p>💡 Solution: Instead of assuming independence, we must explicitly model the spatial relationships. This is done using models that account for <strong>spatial autocorrelation</strong>, such as Spatial Autoregressive (SAR) models, which measure and incorporate the degree of similarity between nearby observations.</p>
+</div></blockquote>
+</li>
+<li><p><strong>The Challenge of Incomplete Data</strong>: We can’t measure data everywhere. Observations, like weather station readings or soil quality samples, are collected at specific, often limited, locations.</p>
+<blockquote>
+<div><p>💡 Solution: To create a continuous surface or estimate values in unsampled areas, we use <strong>spatial interpolation</strong> techniques. Methods like <strong>Inverse Distance Weighting (IDW)</strong> or <strong>Kriging</strong> use the values of nearby points to make intelligent predictions for the gaps in our data.</p>
+</div></blockquote>
+</li>
+<li><p><strong>The Challenge of Heterogeneity</strong>: Since relationships can vary with location, a single global model may hide important local trends.</p>
+<blockquote>
+<div><p>💡 Solution: To quantify and analyze these local variations, we use specialized tools. A <strong>variogram</strong> can help describe how data similarity decreases with distance. To model shifting relationships, advanced regression techniques like <strong>Geographically Weighted Regression (GWR)</strong> are used. GWR builds a unique local model for every point in the dataset, allowing coefficients to change across space and revealing local nuances that a global model would miss.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Collectively, these analytical approaches for tackling the unique challenges of spatial dependence and heterogeneity form the foundational principles of the specialized field known as <strong>Geostatistics</strong>. Learn more about it by visiting the Course <a class="reference external" href="https://campus.tum.de/tumonline/ee/rest/pages/slc.tm.cp/course/950840909" rel="noreferer noopener" target="_blank">Geostatistics and Geomarketing</a>.</p>
+</section>
+<section id="reference-links">
+<h3>Reference Links<a class="headerlink" href="#reference-links" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/data/geodatabases/overview/what-is-a-geodatabase-.htm" rel="noreferer noopener" target="_blank">What is a geodatabase?</a></p></li>
+<li><p><a class="reference external" href="https://desktop.arcgis.com/en/arcmap/latest/manage-data/shapefiles/what-is-a-shapefile.htm" rel="noreferer noopener" target="_blank">What is a shapefile?</a></p></li>
+<li><p><a class="reference external" href="https://www.geopackage.org/" rel="noreferer noopener" target="_blank">OGC GeoPackage</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON" rel="noreferer noopener" target="_blank">GeoJSON - Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://geopandas.org/en/stable/getting_started/introduction.html" rel="noreferer noopener" target="_blank">Introduction to GeoPandas</a></p></li>
+<li><p><a class="reference external" href="https://domino.ai/data-science-dictionary/feature" rel="noreferer noopener" target="_blank">What is a Feature in Machine Learning and Data Science?</a></p></li>
+</ul>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lessons/E0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lesson 0</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lessons/E1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lesson 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-tasks">Basic Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-tasks">Advanced Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-feature-mean-in-data-science">What Does “Feature” Mean in Data Science?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-feature-mean-in-geographic-information-science">What Does “Feature” Mean in Geographic Information Science?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-geoinformation-special">What Makes Geoinformation Special?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-links">Reference Links</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

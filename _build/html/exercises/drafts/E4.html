@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E4: 3D Visualisation and Animation &#8212; Geo-Information</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'exercises/drafts/E4';</script>
+    <link rel="canonical" href="/Geo-Information/exercises/drafts/E4.html" />
+    <link rel="icon" href="../../_static/TUM.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geo-Information</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about/welcome.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/room-access.html">Access to Computer Labs (CIP Pools)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L1.html">L1: Introduction to Geoinformation I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L2.html">L2: Introduction to Geoinformation II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L3.html">L3: Spatiotemporal Representations and Databases I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L4.html">L4: Spatiotemporal Representations and Databases II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L5.html">L5: Spatial Data Analysis I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L6.html">L6: Spatial Data Analysis II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L7.html">L7: Spatial Data Analysis III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L8.html">L8: Cartographic Techniques I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L9.html">L9: Cartographic Techniques II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L10.html">L10: QGIS and Open GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L11.html">L11: Open Geospatial Data I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lectures/L12.html">L12: Open Geospatial Data II</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E0.html">E0: Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E0.html">Lesson 0</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E1.html">E1: Selecting and Editing Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E1.html">Lesson 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E1.html">E1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E2.html">E2: Symbolization in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E2.html">Lesson 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E2.html">E2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E3.html">E3: Georeferencing and Modifying Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E3.html">Lesson 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E3.html">E3</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E4.html">E4: 3D Visualisation and Animation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E4.html">Lesson 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E4.html">E4</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E5.html">E5: Spatial Analysis Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E5.html">Lesson 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E5.html">E5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E6.html">E6: Vertical and Hydrological Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E6.html">Lesson 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E6.html">E6</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E7.html">E7: Network Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E7.html">Lesson 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E7.html">E7</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E8.html">E8: Spatial Data Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E8.html">Lesson 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E8.html">E8</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E9.html">E9: Cartographic Generalization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E9.html">Lesson 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E9.html">E9</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Portfolio.html">Portfolio: Map Design in a GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/Portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/Portfolio.html">Portfolio</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E10.html">E10: QGIS and Open GIS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E10.html">Lesson 10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E10.html">E10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E11.html">E11: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E11.html">Lesson 11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E11.html">E11</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../E12.html">E12: Open Geospatial Data I</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lessons/E12.html">Lesson 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../slides/E12.html">E12</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/exercises/drafts/E4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>E4: 3D Visualisation and Animation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-types-of-3d-data">Common Types of 3D Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pseudo-3d-vs-3d-data">2.5D(Pseudo 3D) vs. 3D Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-get-3d-data">How Do We Get 3D Data?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lidar-scanning-airborne-terrestrial-mobile">LiDAR Scanning (Airborne, Terrestrial, Mobile)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-surveying">Geodetic Surveying</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#photogrammetry-multi-view-geometry">Photogrammetry (Multi-View Geometry)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-computer-vision">3D Computer Vision</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-creation">Artificial Creation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-and-extruding-buildings">1. Preparing and Extruding Buildings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-navigation">2. Coordinate System &amp; Navigation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#digitizing-new-3d-features">3. Digitizing New 3D Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-symbolization">4. 3D Symbolization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-displaying-gnss-points">5. Capturing &amp; Displaying GNSS Points</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-3d-animation">6. Creating a 3D Animation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="e4-3d-visualisation-and-animation">
+<h1>E4: 3D Visualisation and Animation<a class="headerlink" href="#e4-3d-visualisation-and-animation" title="Link to this heading">#</a></h1>
+<section id="warm-up">
+<h2>Warm Up<a class="headerlink" href="#warm-up" title="Link to this heading">#</a></h2>
+<section id="common-types-of-3d-data">
+<h3>Common Types of 3D Data<a class="headerlink" href="#common-types-of-3d-data" title="Link to this heading">#</a></h3>
+<p>3D data can appear in many formats and domains:</p>
+<ul class="simple">
+<li><p><strong>Point clouds</strong> 🟢 (from LiDAR, photogrammetry, laser scanning)</p></li>
+<li><p><strong>Meshes</strong> 🕸️ (triangular or polygonal surfaces from 3D modeling)</p></li>
+<li><p><strong>Voxel data</strong> 🧊 (3D pixels, often used in medical imaging or volumetric models)</p></li>
+<li><p><strong>3D building models</strong> 🏢 (e.g., CityGML, BIM data, CAD models)</p></li>
+<li><p><strong>DEM/DSM</strong> (Digital Elevation/Surface Models, raster grids with height values)</p></li>
+</ul>
+<figure class="align-default" id="illustration-of-3d-data">
+<img alt="exercises/images/ex4/3D-data-diff.ppm" src="exercises/images/ex4/3D-data-diff.ppm" />
+<figcaption>
+<p><span class="caption-text">The illustration of various of 3D data</span><a class="headerlink" href="#illustration-of-3d-data" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="d-pseudo-3d-vs-3d-data">
+<h3>2.5D(Pseudo 3D) vs. 3D Data<a class="headerlink" href="#d-pseudo-3d-vs-3d-data" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>2.5D (Pseudo-3D)</p></th>
+<th class="head"><p>True 3D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></p></td>
+<td><p>One z-value per (x, y)</p></td>
+<td><p>Multiple z-values per (x, y) possible</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Representation</span></code></p></td>
+<td><p>Raster grid (DEM/DSM), extruded polygons</p></td>
+<td><p>Point clouds, meshes, voxels, solids</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Complexity</span></code></p></td>
+<td><p>Relatively simple</p></td>
+<td><p>More complex data structures</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Storage</span> <span class="pre">&amp;</span> <span class="pre">Processing</span></code></p></td>
+<td><p>Lightweight, fast</p></td>
+<td><p>Heavy, requires advanced computation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Can</span> <span class="pre">model</span> <span class="pre">overlaps?</span></code></p></td>
+<td><p>❌ No</p></td>
+<td><p>✅ Yes (bridges, tunnels, multi-floors)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Main</span> <span class="pre">Use</span> <span class="pre">Cases</span></code></p></td>
+<td><p>Terrain, surface analysis, quick 3D view</p></td>
+<td><p>Urban modeling, subsurface, indoor 3D</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>2.5D is enough</strong> when you only care about terrain or building heights.</p></li>
+<li><p><strong>True 3D is necessary</strong> when you need full volumetric analysis or overlapping structures.</p></li>
+<li><p>In geodesy, we often start with 2.5D (e.g., DEMs) but increasingly move to <strong>full 3D</strong> for city models, infrastructure, and digital twins.</p></li>
+<li><p>2.5D is also common in video games and VR.</p></li>
+</ul>
+</section>
+<section id="how-do-we-get-3d-data">
+<h3>How Do We Get 3D Data?<a class="headerlink" href="#how-do-we-get-3d-data" title="Link to this heading">#</a></h3>
+<p>This is a huge topic that connects to many industries: <em>Robotics, Autonomous Driving (AD), Gaming, Digital Design, Architecture, Geodesy</em>, and more.<br />
+Broadly speaking, there are two ways: <strong>direct measurement</strong> (sensors record 3D geometry in real-world coordinates) and <strong>indirect reconstruction</strong> (3D is inferred from 2D observations or designed manually).</p>
+<section id="lidar-scanning-airborne-terrestrial-mobile">
+<h4>LiDAR Scanning (Airborne, Terrestrial, Mobile)<a class="headerlink" href="#lidar-scanning-airborne-terrestrial-mobile" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Captures dense <strong>point clouds</strong> with XYZ coordinates and intensity values.</p></li>
+<li><p>Can be mounted on drones, aircraft, cars, or tripods.</p></li>
+</ul>
+</section>
+<section id="geodetic-surveying">
+<h4>Geodetic Surveying<a class="headerlink" href="#geodetic-surveying" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>GNSS / GPS surveying: directly measures 3D positions in global coordinates (WGS84, UTM, etc.).</p></li>
+<li><p>Total station or laser theodolite: high-precision ground-based measurement for engineering, construction, and geodesy.</p></li>
+</ul>
+</section>
+<section id="photogrammetry-multi-view-geometry">
+<h4>Photogrammetry (Multi-View Geometry)<a class="headerlink" href="#photogrammetry-multi-view-geometry" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Derives 3D geometry from overlapping images(aerial, drone, or satellite).</p></li>
+<li><p>Large-scale projects: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0924271602001247" rel="noreferer noopener" target="_blank">SRTM</a> generated near-global elevation models.</p></li>
+</ul>
+</section>
+<section id="d-computer-vision">
+<h4>3D Computer Vision<a class="headerlink" href="#d-computer-vision" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Structure from Motion (SfM): reconstructs camera positions + sparse point clouds from unordered photos, (<a class="reference external" href="https://github.com/colmap/colmap" rel="noreferer noopener" target="_blank">COLMAP</a>).</p></li>
+<li><p>Multi-View Stereo(MVS):  refines dense surface geometry given camera parameters, e.g. <a class="reference external" href="https://arxiv.org/abs/1804.02505" rel="noreferer noopener" target="_blank">MVSNet</a></p></li>
+<li><p>Deep learning approaches:</p>
+<ul>
+<li><p><a class="reference external" href="https://vgg-t.github.io/" rel="noreferer noopener" target="_blank">VGGT (Vision Geometry Grounded Transformers)</a>: learns 3D scene geometry from multi-views.</p></li>
+<li><p>Neural rendering methods:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.matthewtancik.com/nerf" rel="noreferer noopener" target="_blank">NeRF (Neural Radiance Fields)</a> – photorealistic novel views.</p></li>
+<li><p><a class="reference external" href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" rel="noreferer noopener" target="_blank">3D Gaussian Splatting</a> – real-time 3D rendering.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="artificial-creation">
+<h4>Artificial Creation<a class="headerlink" href="#artificial-creation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Models created by artists or engineers in CAD, BIM, or 3D modeling tools (SketchUp, Blender, 3ds Max).</p></li>
+<li><p>Common in <em>gaming, movies, architectural visualization, digital twins</em>.</p></li>
+</ul>
+<div class="admonition-with-or-without-world-coordinates admonition">
+<p class="admonition-title">With or Without World Coordinates?</p>
+<ul class="simple">
+<li><p><strong>Direct methods (LiDAR, GNSS, total station)</strong> → usually already georeferenced, so they can be integrated into GIS immediately.</p></li>
+<li><p><strong>Indirect methods (SfM, photogrammetry without GCPs, manual design)</strong> → typically start in <strong>relative coordinates</strong> only.</p></li>
+<li><p>If no information about <strong>scale</strong> or <strong>world coordinates</strong> is available, the dataset cannot be directly placed in a real-world CRS. This is why we require <strong>Ground Control Points (GCPs)</strong> or another external reference source (e.g., GNSS measurements) to restore accurate georeferencing.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="task">
+<h2>Task<a class="headerlink" href="#task" title="Link to this heading">#</a></h2>
+<section id="descriptions">
+<h3>Descriptions<a class="headerlink" href="#descriptions" title="Link to this heading">#</a></h3>
+<p>In this exercise, you’ll move from <strong>2D mapping</strong> to <strong>3D visualization</strong> in ArcGIS Pro. You will set up and display spatial information in three dimensions, create realistic <strong>3D symbols</strong> for buildings, street furniture, and monuments, capture GNSS points, and finish by producing a <strong>3D animation</strong> and exporting it as a video. Detailed instructions in <code class="xref download docutils literal notranslate"><span class="pre">Lesson</span> <span class="pre">4</span></code></p>
+<p>&amp; You can <a class="reference internal" href="#./lessons/lesson4.md"><span class="xref myst">Click here to look</span></a></p>
+<section id="data">
+<h4>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Students.gdb</span></code> (buildings, roads)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Park-cadastral.tif</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TUM.dae</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Old_Pinakothek.dae</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Monuments.gpx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Track.gpx</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h3>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Prepare building layer and extrude into 3D</strong></p>
+<ul>
+<li><p>assign heights and visualize buildings in three dimensions.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Create and manage a Local Scene</strong></p>
+<ul>
+<li><p>set up a 3D workspace using a local UTM projection for accurate measurements.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Digitize and symbolize new 3D point features</strong></p>
+<ul>
+<li><p>add trees, streetlights, benches, and landmarks from imagery.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Classify and orient features</strong></p>
+<ul>
+<li><p>use attributes to control rotation, style, and size of symbols.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Import and position custom 3D models</strong></p>
+<ul>
+<li><p>replace simple shapes with detailed building/monument models.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Capture GNSS points and visualize in 3D</strong></p>
+<ul>
+<li><p>import GPS measurements and align them with the scene.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Create a fly-through animation</strong></p>
+<ul>
+<li><p>set camera paths, transparency changes, and annotations.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> <strong>Export animation to video</strong></p>
+<ul>
+<li><p>produce a shareable MP4 file and submit.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="preparing-and-extruding-buildings">
+<h4>1. Preparing and Extruding Buildings<a class="headerlink" href="#preparing-and-extruding-buildings" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Select buildings with <code class="docutils literal notranslate"><span class="pre">level_num</span></code> = 0 or NULL and assign default value <strong>3</strong>.</p></li>
+<li><p>Create a <strong>Local Scene</strong> and add <code class="docutils literal notranslate"><span class="pre">Buildings</span></code> and <code class="docutils literal notranslate"><span class="pre">Roads</span></code>.</p></li>
+<li><p>Extrude buildings by <code class="docutils literal notranslate"><span class="pre">$feature.level_num</span> <span class="pre">*</span> <span class="pre">4</span></code> (meters per floor).</p></li>
+</ul>
+</section>
+<section id="coordinate-system-navigation">
+<h4>2. Coordinate System &amp; Navigation<a class="headerlink" href="#coordinate-system-navigation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Change scene projection to <strong>ETRS 1989 UTM Zone 32N</strong>.</p></li>
+<li><p>Explore 3D navigation tools and mouse controls.</p></li>
+</ul>
+</section>
+<section id="digitizing-new-3d-features">
+<h4>3. Digitizing New 3D Features<a class="headerlink" href="#digitizing-new-3d-features" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Create point feature classes for trees, streetlights, benches, and landmarks with Z-values enabled.</p></li>
+<li><p>Digitize features from cadastral plan and aerial imagery.</p></li>
+<li><p>Place anchor points for TUM and Old Pinakothek.</p></li>
+</ul>
+</section>
+<section id="d-symbolization">
+<h4>4. 3D Symbolization<a class="headerlink" href="#d-symbolization" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Apply built-in 3D marker symbols to point layers.</p></li>
+<li><p>Classify park benches by <code class="docutils literal notranslate"><span class="pre">Orient</span></code> attribute and adjust rotation.</p></li>
+<li><p>Replace extruded landmark buildings with <strong>custom 3D models</strong> and position them correctly.</p></li>
+</ul>
+</section>
+<section id="capturing-displaying-gnss-points">
+<h4>5. Capturing &amp; Displaying GNSS Points<a class="headerlink" href="#capturing-displaying-gnss-points" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Use GPS device to record monument locations (20 averaged points each).</p></li>
+<li><p>Convert GPX files to shapefiles using GPS Utility.</p></li>
+<li><p>Define projection as WGS 1984 and symbolize monuments with custom 3D models.</p></li>
+</ul>
+</section>
+<section id="creating-a-3d-animation">
+<h4>6. Creating a 3D Animation<a class="headerlink" href="#creating-a-3d-animation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Plan keyframes for viewpoints and transitions.</p></li>
+<li><p>Adjust transparency, add titles, and set duration.</p></li>
+<li><p>Export animation as MP4 (YouTube preset) and submit.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advance-task">
+<h3>Advance Task<a class="headerlink" href="#advance-task" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Automate the workflow
+Try scripting repetitive steps such as updating attributes, extruding buildings, or converting data.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update Building Heights from CSV</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">arcpy</span>
+<span class="n">building_fc</span> <span class="o">=</span> <span class="s2">&quot;path/to/Buildings&quot;</span>
+<span class="n">csv_table</span> <span class="o">=</span> <span class="s2">&quot;path/to/building_heights.csv&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">AddJoin</span><span class="p">(</span><span class="n">building_fc</span><span class="p">,</span> <span class="s2">&quot;building_id&quot;</span><span class="p">,</span> <span class="n">csv_table</span><span class="p">,</span> <span class="s2">&quot;building_id&quot;</span><span class="p">)</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="s2">&quot;!building_heights.levels! * 4&quot;</span>
+<span class="n">arcpy</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">CalculateField</span><span class="p">(</span><span class="n">building_fc</span><span class="p">,</span> <span class="s2">&quot;extrude_height&quot;</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="s2">&quot;PYTHON3&quot;</span><span class="p">)</span>
+
+<span class="c1"># Convert GPX to Shapefile (Python + Geopandas)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="n">gpx_file</span> <span class="o">=</span> <span class="s2">&quot;monuments.gpx&quot;</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">gpx_file</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;waypoints&#39;</span><span class="p">)</span>
+<span class="n">points</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;monuments.shp&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Exploring Heights Across Coordinate Systems</strong>
+<strong>Elevation (Z-values)</strong> is not as straightforward as it seems. The meaning and interpretation of “height” depends heavily on the <strong>coordinate system</strong> in use. You can investigate how <strong>height values</strong> described on the different spatial reference system.</p></li>
+<li><p><strong>Visualize Real Flight Trajectories in 3D</strong></p>
+<ul>
+<li><p>Explore <strong>real-world aviation data</strong>, download a flight track, visualize it as a <strong>3D path</strong> in <strong>Google Earth</strong> or <strong>ArcGIS Pro</strong>, and see how these data is organized.</p></li>
+<li><p>Download and process Real Flight Data from flight websites like:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.flightradar24.com/" rel="noreferer noopener" target="_blank">FlightRadar24</a></p></li>
+<li><p><a class="reference external" href="https://opensky-network.org/" rel="noreferer noopener" target="_blank">OpenSky Network</a></p></li>
+<li><p><a class="reference external" href="https://globe.adsbexchange.com/" rel="noreferer noopener" target="_blank">ADS-B Exchange</a></p></li>
+<li><p><a class="reference external" href="https://www.gpsvisualizer.com/map_input?form=googleearth" rel="noreferer noopener" target="_blank">GPSVisualizer</a></p></li>
+</ul>
+</li>
+<li><p>Visualize in <a class="reference external" href="https://earth.google.com/web/" rel="noreferer noopener" target="_blank">Google Earth</a></p>
+<ul>
+<li><p>Google Earth can directly open <strong>KML</strong> or <strong>GPX</strong> files with 3D elevation data.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/map-authoring/scenes.htm" rel="noreferer noopener" target="_blank">Scenes in ArcGIS Pro</a></p></li>
+<li><p><a class="reference external" href="https://learn.arcgis.com/zh-cn/paths/3d-in-arcgis-pro/" rel="noreferer noopener" target="_blank">3D in Arcgis Pro</a></p></li>
+<li><p><a class="reference external" href="http://www.gpsu.co.uk/" rel="noreferer noopener" target="_blank">GPS Utility</a></p></li>
+<li><p><a class="reference external" href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/animation/overview-of-animation.htm" rel="noreferer noopener" target="_blank">Animation basics</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/2.5D" rel="noreferer noopener" target="_blank">2.5D, From Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://viso.ai/computer-vision/3d-computer-vision/" rel="noreferer noopener" target="_blank">3D Computer Vision: A Comprehensive Guide</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./exercises\drafts"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#warm-up">Warm Up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-types-of-3d-data">Common Types of 3D Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-pseudo-3d-vs-3d-data">2.5D(Pseudo 3D) vs. 3D Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-get-3d-data">How Do We Get 3D Data?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lidar-scanning-airborne-terrestrial-mobile">LiDAR Scanning (Airborne, Terrestrial, Mobile)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-surveying">Geodetic Surveying</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#photogrammetry-multi-view-geometry">Photogrammetry (Multi-View Geometry)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-computer-vision">3D Computer Vision</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#artificial-creation">Artificial Creation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task">Task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptions">Descriptions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-and-extruding-buildings">1. Preparing and Extruding Buildings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-system-navigation">2. Coordinate System &amp; Navigation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#digitizing-new-3d-features">3. Digitizing New 3D Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-symbolization">4. 3D Symbolization</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capturing-displaying-gnss-points">5. Capturing &amp; Displaying GNSS Points</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-3d-animation">6. Creating a 3D Animation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advance-task">Advance Task</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Chair of Cartography and Visual Analytics
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
